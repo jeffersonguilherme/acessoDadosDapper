@@ -25,7 +25,8 @@ namespace DapperCurso{
                 //WriteLine("==================================================");
                 //ListAuthor(connection);
                 //ExecuteProcedure(connection);
-                ExecuteScalar(connection);
+                //ExecuteScalar(connection);
+                OneToOne(connection);
             }
         }
     
@@ -258,5 +259,18 @@ namespace DapperCurso{
                 Console.WriteLine($"A categoria inserida foi : {id}");
         }
     
+        static void OneToOne(SqlConnection connection){
+            var sql = "SELECT * FROM [CareerItem] INNER JOIN [Course] ON [CareerItem].[CourseId] = [Course].[Id]";
+            var items = connection.Query<CareerItem, Course, CareerItem>(
+                sql,
+                (careerItem, course)=>{
+                    careerItem.Course = course;
+                    return careerItem;
+                }, splitOn: "Id");
+
+            foreach(var item in items){
+                Console.WriteLine($"{item.Title} | Curso: {item.Course.Title}");
+            }
+        }
     }
 }
