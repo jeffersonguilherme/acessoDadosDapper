@@ -24,7 +24,8 @@ namespace DapperCurso{
                 //CreateManyAuthor(connection);
                 //WriteLine("==================================================");
                 //ListAuthor(connection);
-                ExecuteProcedure(connection);
+                //ExecuteProcedure(connection);
+                ExecuteScalar(connection);
             }
         }
     
@@ -219,6 +220,43 @@ namespace DapperCurso{
         var affectedRows = connection.Execute(sql, pars, commandType: CommandType.StoredProcedure);
         Console.WriteLine($"{affectedRows} linhas");
        } 
+    
+        static void ExecuteScalar(SqlConnection connection){
+                
+                var category = new Category();
+
+                category.Title = "Amazon AWS";
+                category.Url = "amazon";
+                category.Description = "Categoria destinada a serviços do AWS";
+                category.Order = 8;
+                category.Summary = "AWS Cloud";
+                category.Featured = false;
+
+
+                var insertSql = @"INSERT INTO
+                [Category]
+                OUTPUT inserted.[Id]
+                VALUES(
+                    NEWID(),
+                    @Title,
+                    @Url,
+                    @Summary,
+                    @Order,
+                    @Description,
+                    @Featured) SELECT SCOPE_IDENTITY()";
+
+                    var id = connection.ExecuteScalar<Guid>(insertSql, new { 
+                    category.Title,
+                    category.Url,
+                    category.Summary,
+                    category.Order,
+                    category.Description,
+                    category.Featured,
+                });
+                
+
+                Console.WriteLine($"A categoria inserida foi : {id}");
+        }
     
     }
 }

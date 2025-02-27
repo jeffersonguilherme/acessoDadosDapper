@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bS7cflOH9gY=",
+  "dgSpecHash": "JsL1FIhabG4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jeffe\\OneDrive\\Documentos\\CURSO_C#\\DapperCurso\\DapperCurso.csproj",
+  "projectFilePath": "C:\\Users\\jeffe\\OneDrive\\Documentos\\GitHub\\acessoDadosDapper\\DapperCurso\\DapperCurso.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jeffe\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\jeffe\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
